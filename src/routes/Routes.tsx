@@ -8,6 +8,7 @@ import Login from "../pages/Login";
 import App from "../pages/App";
 import { NonProtectedRoute } from "./NonProtectedRoute";
 import Register from "../pages/Register";
+import AddLocation from "../pages/AddLocation";
 
 const Routes = () => {
 	//@ts-ignore
@@ -20,7 +21,7 @@ const Routes = () => {
 		{
 			path: "about",
 			element: <div>About</div>,
-		}
+		},
 	];
 	const AuthenticatedRoutes = [
 		{
@@ -38,6 +39,10 @@ const Routes = () => {
 				{
 					path: "/admin/logout",
 					element: <div>Logout</div>,
+				},
+				{
+					path: "/admin/add-location",
+					element: <AddLocation />
 				},
 			],
 		},
