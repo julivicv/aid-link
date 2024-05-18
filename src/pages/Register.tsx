@@ -17,7 +17,6 @@ function Register() {
 	};
 
 	const handleSubmit = async () => {
-		console.log(formData);
 		await fetch(loginURL + 'user', {
 			method: "POST",
 			cache: "no-cache",
