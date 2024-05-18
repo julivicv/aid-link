@@ -1,12 +1,11 @@
-import { useState } from 'react'
-
 function App() {
 
   return (
     <>
 		<div className="navbar bg-base-100">
-		<a className="btn btn-ghost text-xl">daisyUI</a>
+			<a className="btn btn-ghost text-xl">Aid Link</a>
 		</div>
+		<div></div>
     </>
   )
 }
