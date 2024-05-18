@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useAuth } from "../provider/AuthProvider";
 import { useNavigate } from "react-router";
 
-function Login() {
+function Register() {
 
-	const loginURL = 'https://aidlink-q4mm.onrender.com/login'
+	const loginURL = 'https://aidlink-q4mm.onrender.com/'
 
 	//@ts-ignore
 	const { setToken } = useAuth();
@@ -14,28 +14,39 @@ function Login() {
 	const handleLogin = (token: string) => {
 		setToken(token);
 		navigate("/", { replace: true });
-	  };
+	};
 
 	const handleSubmit = async () => {
 		console.log(formData);
-		await fetch(loginURL, {
+		await fetch(loginURL + 'user', {
 			method: "POST",
 			cache: "no-cache",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(formData)
-		})
-			.then(res => res.json())
-			.then(data => {
-				handleLogin(data.message);
+		}).then(async _ => {
+			await fetch(loginURL + 'login', {
+				method: "POST",
+				cache: "no-cache",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(formData)
 			})
-			.catch(Err => (console.log(Err)))
+				.then(res => res.json())
+				.then(data => {
+					handleLogin(data.message);
+				})
+				.catch(Err => (console.log(Err)))
+			}
+		)
 	}
 
 	const [formData, setFormData] = useState({
-		email: 'eduardo@qwer.com',
-		password: 'qwerqwer'
+		name: '',
+		email: '',
+		password: ''
 	})
 
 	return (
@@ -43,8 +54,14 @@ function Login() {
 			<a role="button" href="../" className="btn btn-circle btn-outline m-4">
 				<CaretLeft size={32} weight="bold" />
 			</a>
-			<span className="block text-3xl font-bold text-center pt-5">Login</span>
+			<span className="block text-3xl font-bold text-center pt-5">Registro</span>
 			<form className="m-auto card-body" onSubmit={() => { return false }}>
+				<div className="form-control">
+					<label className="label">
+						<span className="label-text">Nome</span>
+					</label>
+					<input type="text" placeholder="nome" onChange={(e) => setFormData({ ...formData, name: e.target.value })} className="input input-bordered" value={formData.name} required />
+				</div>
 				<div className="form-control">
 					<label className="label">
 						<span className="label-text">Email</span>
@@ -68,4 +85,4 @@ function Login() {
 	)
 }
 
-export default Login
+export default Register

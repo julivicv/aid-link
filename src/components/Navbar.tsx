@@ -1,5 +1,6 @@
 import { DotsThreeOutline, List } from "@phosphor-icons/react"
-import { useState } from "react";
+import { useAuth } from "../provider/AuthProvider";
+import { useNavigate } from "react-router";
 
 type menuActions = [{
 	link: string,
@@ -8,7 +9,18 @@ type menuActions = [{
 
 function Navbar(props: any) {
 
+	//@ts-ignore
+	const { token, setToken } = useAuth();
+	const navigate = useNavigate();
+
+	const handleLogout = () => {
+		setToken();
+		navigate("/", { replace: true });
+	  };
+
 	const loadMenuContents = (menuActions: menuActions, className: string, isDrawer: boolean = false) => {
+		console.log("token", token);
+
 		const actions = menuActions.map(e => (<li><a href={e.link}>{e.actionText}</a></li>));
 		return (<ul className={className}>
 			{isDrawer ? <div className="p-2 mr-2">Aid Link</div> : ''}
@@ -16,8 +28,8 @@ function Navbar(props: any) {
 		</ul>)
 	}
 
-	const loadContextMenu = (isLogged: boolean) => {
-		return isLogged
+	const loadContextMenu = (isAuthenticated: boolean) => {
+		return isAuthenticated
 			? (
 				<div className="dropdown dropdown-end">
 					<div tabIndex={0} role="button" className="btn btn-ghost">
@@ -25,14 +37,12 @@ function Navbar(props: any) {
 					</div>
 					<ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
 						<li><a id="profile" href="#">Perfil</a></li>
-						<li><a id="logout" href="#" onClick={() => setLogged(false)}>Deslogar</a></li>
+						<li><a id="logout" href="#" onClick={handleLogout}>Deslogar</a></li>
 					</ul>
 				</div>
 			)
-			: (<a id="login" role="button" className="px-3 btn btn-ghost" href="./login" onClick={() => setLogged(true)}>Logar</a>)
+			: (<a id="login" role="button" className="px-3 btn btn-ghost" href="./login">Logar</a>)
 	}
-
-	const [isLogged, setLogged] = useState(false)
 
 	return (
 		<>
@@ -51,7 +61,7 @@ function Navbar(props: any) {
 							{loadMenuContents(props.menuActions, "menu menu-horizontal")}
 						</div>
 						<div className="flex-none">
-							{loadContextMenu(isLogged)}
+							{loadContextMenu(typeof token === 'string')}
 						</div>
 					</div>
 				</div>
