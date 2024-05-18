@@ -14,7 +14,7 @@ function AddLocation() {
         description: "",
         latitude: "",
         longitude: "",
-        image: "" // Adicionando o campo para a URL da imagem
+        image: ""
     });
 
     //@ts-ignore
@@ -45,7 +45,7 @@ function AddLocation() {
                 setFormData(prevState => ({
                     ...prevState,
                     city: data.city,
-                    estado: data.state // Corrigindo para "state" ao invés de "estado"
+                    estado: data.state
                 }));
                 await fetchCoordinates(data.city);
             } else {
