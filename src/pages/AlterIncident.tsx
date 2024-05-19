@@ -69,7 +69,7 @@ function AlterIncident() {
 
             console.log("Formulário atualizado:", updatedData);
             navigate('/'); // Redireciona para a página inicial após a atualização ser realizada
-        } catch (error) {
+        } catch (error: any) {
             console.error("Erro ao atualizar o formulário:", error);
             if (error.response) {
                 console.error("Resposta do servidor:", error.response.data);
