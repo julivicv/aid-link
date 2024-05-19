@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Bread, DotsSixVertical, FirstAid, QuestionMark, SprayBottle, TShirt, Towel, Plus, ToiletPaper, Person } from "@phosphor-icons/react"
+import { Bread, DotsSixVertical, FirstAid, QuestionMark, SprayBottle, TShirt, Towel, ToiletPaper, Person } from "@phosphor-icons/react"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { QrCodePix } from "qrcode-pix";
 
@@ -18,11 +18,9 @@ type props = {
 function Donation(props: props) {
 	const [qrCode, setQrCode] = useState<string>('');
 
-	const [rawPix, setRawPix] = useState<string>('');
-
 	const [pix, setPix] = useState<string>(props.pix);
 
-	const [userRole, setUserRole] = useState<string>("owner");
+	const [userRole, _] = useState<string>("owner");
 
 	useEffect(() => {
 		async function generateDynamicPix() {
@@ -34,10 +32,8 @@ function Donation(props: props) {
 				city: 'São Paulo',
 			})
 
-			const rawPixStr = qrCodePix.payload()
 			const qrCodeBase64 = await qrCodePix.base64()
 
-			setRawPix(rawPixStr)
 
 			setQrCode(qrCodeBase64)
 		}
