@@ -72,9 +72,6 @@ function Register() {
 						<span className="label-text">Senha</span>
 					</label>
 					<input type="password" placeholder="senha" onChange={(e) => setFormData({ ...formData, password: e.target.value })} className="input input-bordered" value={formData.password} required />
-					{/* <label className="label">
-						<a href="#" className="label-text-alt link link-hover">Esqueceu da senha?</a>
-					</label> */}
 				</div>
 				<div className="form-control mt-6">
 					<button onClick={() => handleSubmit()} type="button" className="btn btn-primary">Login</button>
