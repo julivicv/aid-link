@@ -2,7 +2,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const IncidentList = () => {
-    const [incidents, setIncidents] = useState([]);
+    const [incidents, setIncidents] = useState([{
+		name: '',
+		description: ''
+	}]);
     const token = localStorage.getItem('token'); // Supondo que o token está armazenado no localStorage após o login
 
     useEffect(() => {
@@ -13,7 +16,11 @@ const IncidentList = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                setIncidents(response.data);
+				//@ts-ignore
+                setIncidents(response.data.map(({name, description}) => ({
+					name: name,
+					description: description
+				})));
             } catch (error) {
                 console.error('Erro ao recuperar incidentes:', error);
             }

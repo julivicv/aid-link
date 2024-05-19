@@ -54,7 +54,7 @@ function AddIncident() {
             } else {
                 throw new Error("Dados não encontrados para o cep fornecido");
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error("Erro:", error);
         }
     };
@@ -75,7 +75,7 @@ function AddIncident() {
             } else {
                 throw new Error("Coordenadas não encontradas para a cidade");
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error("Erro:", error);
         }
     };
@@ -104,7 +104,7 @@ function AddIncident() {
             });
             console.log("Formulário submetido:", formDataWithNumbers);
             navigate('/');
-        } catch (error) {
+        } catch (error: any) {
             console.error("Erro ao enviar dados do formulário:", error);
             if (error.response) {
                 console.error("Resposta do servidor:", error.response.data);
@@ -149,7 +149,7 @@ function AddIncident() {
                         type="text"
                         placeholder="Digite seu cep"
                         onChange={handleChangecep}
-                        onBlur={(e) => setFormData({ ...formData, cep: formatcep(formData.cep) })}
+                        onBlur={() => setFormData({ ...formData, cep: formatcep(formData.cep) })}
                         className="input input-bordered"
                         value={formatcep(formData.cep)}
                         maxLength={9}
