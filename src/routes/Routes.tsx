@@ -8,7 +8,8 @@ import Login from "../pages/Login";
 import App from "../pages/App";
 import { NonProtectedRoute } from "./NonProtectedRoute";
 import Register from "../pages/Register";
-import AddLocation from "../pages/AddLocation";
+import AddIncident from "../pages/AddIncident";
+import AlterLocation from "../pages/AlterIncident";
 
 const Routes = () => {
 	//@ts-ignore
@@ -37,13 +38,18 @@ const Routes = () => {
 					element: <div>User Profile</div>,
 				},
 				{
-					path: "/admin/logout",
-					element: <div>Logout</div>,
+					path: "/admin/incidents",
+					element: <AlterLocation />
 				},
 				{
-					path: "/admin/add-location",
-					element: <AddLocation />
+					path: "/admin/add-incident",
+					element: <AddIncident />
 				},
+				{
+					path: "/admin/alter-incident",
+					element: <AlterLocation />
+				},
+				
 			],
 		},
 	];

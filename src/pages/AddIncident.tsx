@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../provider/AuthProvider";
 import axios from "axios";
 
-function AddLocation() {
-
-    const incidentURL = 'https://aidlink-q4mm.onrender.com/incident';
+function AddIncident() {
     //@ts-ignore
     const { token } = useAuth();
     const navigate = useNavigate();
@@ -240,4 +238,4 @@ function AddLocation() {
     );
 }
 
-export default AddLocation;
+export default AddIncident;

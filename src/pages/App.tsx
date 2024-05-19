@@ -9,8 +9,8 @@ function App() {
 			actionText: 'test'
 		},
 		{
-			link: './',
-			actionText: 'test'
+			link: './admins/incidents',
+			actionText: 'Incidentes'
 		}
 	]
 
