@@ -46,7 +46,7 @@ function Navbar(props: any) {
 
 	return (
 		<>
-			<div className="drawer">
+			<div className="drawer z-[2000]">
 				<input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
 				<div className="drawer-content flex flex-col">
 					{/* Navbar */}
