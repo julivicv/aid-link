@@ -12,7 +12,7 @@ function App() {
 			actionText: 'test'
 		},
 		{
-			link: './admins/incidents',
+			link: './admin/incidents',
 			actionText: 'Incidentes'
 		}
 	]
